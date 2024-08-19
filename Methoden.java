@@ -9,6 +9,10 @@ public class Methoden {
         int minutes = (restAfterHours - restAfterMinutes) / 60;
         return java.lang.String.format("%02d:%02d:%02d", hours, minutes, restAfterMinutes);
     }
+
+    public static double distance(int x, int y) {
+        return java.lang.Math.sqrt(x * x + y * y);
+    }
     
     public static void main(String[] args){
         // Test-Code für Teilaufgabe a)
@@ -25,7 +29,10 @@ public class Methoden {
 
         // Test-Code für Teilaufgabe b)
         System.out.println("Aufgabe b)");
-        // TODO: Schreibe Testcode für die Aufgabe
+        System.out.println(distance(5, 10));
+        System.out.println(distance(4, 3));
+        System.out.println(distance(25, 200));
+        System.out.println(distance(5, 20));
         System.out.println();
     }
     
