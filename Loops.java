@@ -52,6 +52,21 @@ public class Loops {
         }
         System.out.println();
     }
+
+    static float pi(int digits) {
+        float piOverFour = 1;
+        boolean addition = false;
+        for (long i = 0; i < Math.pow(10, digits) / 2; i++) {
+            float denominator = i * 2 + 3;
+            if (addition) {
+                piOverFour += 1 / denominator;
+            } else {
+                piOverFour -= 1 / denominator;
+            }
+            addition = !addition;
+        }
+        return piOverFour * 4;
+    }
     
     public static void main(String[] args){
         
@@ -78,7 +93,7 @@ public class Loops {
         // Test-Code für Teilaufgabe d)
         System.out.println("Aufgabe d)");
         for (int n = 0; n < 12; n++){
-            // System.out.println("Pi approximated to " + n + " digits with pi()  is " + pi(n));
+            System.out.println("Pi approximated to " + n + " digits with pi()  is " + pi(n));
         }
         System.out.println();
     }
