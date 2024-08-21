@@ -94,23 +94,35 @@ class Board {
 
 public class Conway {
   public static void main(String[] args) {
-    int n = 20;
-    int m = 20;
-    int numOfGenerations = 10;
+    int n = Integer.parseInt(args[0]);
+    int m = Integer.parseInt(args[1]);
+    int numOfGenerations = Integer.parseInt(args[2]);
     
     Board board = new Board(n, m);
-    board.setAlive(0, 17);
-    board.setAlive(1, 17);
-    board.setAlive(2, 17);
-    board.setAlive(2, 18);
-    board.setAlive(1, 19);
+    board.fillRandom();
 
-    for (int i = 0; i < numOfGenerations; i++) {
-      board.print();
-      System.out.println();
+    if (numOfGenerations < 0) {
+      while (true) {
+        board.print();
+        System.out.println();
+        try { TimeUnit.MILLISECONDS.sleep(500); } catch(Exception e) {};
+        Board nextBoard = nextGeneration(board);
+        if (board.board == nextBoard.board) {
+          break;
+        }
+        board = nextBoard;
+      }
+    } else {
+      for (int i = 0; i < numOfGenerations; i++) {
+        board.print();
+        System.out.println();
+        try { TimeUnit.MILLISECONDS.sleep(500); } catch(Exception e) {};
+        board = nextGeneration(board);
+      }
+    }
+  }
 
-      try { TimeUnit.MILLISECONDS.sleep(500); } catch(Exception e) {};
-
+  static Board nextGeneration(Board board) {
       Board newBoard = new Board(board.width, board.height);
 
       for (int x = 0; x < board.width; x++) {
@@ -136,7 +148,6 @@ public class Conway {
         }
       }
 
-      board = newBoard;
-    }
+      return newBoard;
   }
 }
