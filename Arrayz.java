@@ -16,6 +16,48 @@ public class Arrayz {
       }
       return array;
     }
+
+    static boolean isMagicSquare(int[][] magicSquare) {
+      int firstSum = 0;
+      for (int i: magicSquare[0]) {
+        firstSum += i;
+      }
+
+      for (int i = 0; i < magicSquare.length; i++) {
+        int sum = 0;
+        for (int j: magicSquare[i]) {
+          sum += j;
+        }
+        if (sum != firstSum) {
+          return false;
+        }
+      }
+
+      for (int i = 0; i < magicSquare[0].length; i++) {
+        int sum = 0;
+        for (int[] line: magicSquare) {
+          sum += line[i];
+        }
+        if (sum != firstSum) {
+          if (sum != firstSum) {
+            return false;
+          }
+        }
+      }
+
+      int sumL = 0;
+      int sumR = 0;
+      for (int i = 0; i < magicSquare.length; i++) {
+        sumL += magicSquare[i][i];
+        sumR += magicSquare[i][magicSquare.length - 1 - i];
+      }
+      if (sumL != firstSum || sumR != firstSum) {
+        return false;
+      }
+
+
+      return true;
+    }
     
     public static void main(String[] args){
         
@@ -24,7 +66,6 @@ public class Arrayz {
         for (double i: sort(new double[]{2, 3, 10, 4, 12, 45, 3, 1})) {
           System.out.println(i);
         }
-        // TODO: Schreibe mehr Testcode
         System.out.println();
 
         // Test-Code für Teilaufgabe f)
@@ -34,13 +75,13 @@ public class Arrayz {
                 { 2, 16, 5, 11 },
                 { 7, 9, 4, 14 }
         };
-        // System.out.println(isMagicSquare(magicSquare));
+        System.out.println(isMagicSquare(magicSquare));
         int[][] nonMagicSquare = new int[][] { { 1, 6, 15, 1 },
                 { 13, 3, 10, 8 },
                 { 2, 16, 5, 11 },
                 { 7, 9, 4, 14 }
         };
-        // System.out.println(isMagicSquare(nonMagicSquare));
+        System.out.println(isMagicSquare(nonMagicSquare));
         System.out.println();
     }
 }
